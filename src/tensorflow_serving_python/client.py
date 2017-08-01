@@ -32,21 +32,21 @@ class TFClient(object):
         """
         return self.stub.Predict(request, timeout)
 
-    def make_prediction(self, data, name='inception', timeout=10., convert_to_dict=True):
+    def make_prediction(self, input, input_name, name='inception', timeout=10., convert_to_dict=True):
         """
-        Make a prediction on a buffer full of image data (tested .jpg as of now)
-        :param data: Data buffer
+        Make a prediction on a single tensor input
+        :param input: Input data, may be a python scalar, a python list, a numpy ndarray, or a numpy scalar
+        :param input_name: Name of the input tensor in the model
         :param name: Name of the model_spec to use
         :param timeout: Timeout in seconds to wait for more batches to pile up
         :return: Prediction result
         """
         request = predict_pb2.PredictRequest()
         request.model_spec.name = name
-        proto = tf.contrib.util.make_tensor_proto(data, shape=[1])
 
         # TODO dst.CopyFrom(src) fails here because we compile custom protocolbuffers
         # TODO Proper compiling would speed up the next line by a factor of 10
-        copy_message(proto, request.inputs['images'])
+        copy_message(tf.contrib.util.make_tensor_proto(input), request.inputs[input_name])
         response = self.execute(request, timeout=timeout)
 
         if not convert_to_dict:
