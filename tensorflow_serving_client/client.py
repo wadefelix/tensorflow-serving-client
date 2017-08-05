@@ -2,7 +2,7 @@ import tensorflow as tf
 import numpy as np
 
 from grpc.beta import implementations
-from keras.preprocessing import image
+from PIL import Image
 
 from tensorflow_serving_client.protos import prediction_service_pb2, predict_pb2
 from tensorflow_serving_client.proto_util import copy_message
@@ -20,10 +20,10 @@ class TensorflowServingClient(object):
         self.stub = prediction_service_pb2.beta_create_PredictionService_stub(self.channel)
 
     def classify_image(self, image_path, input_tensor_name='image', timeout=10.0, image_preprocessor=None):
-        image_data = image.load_img(image_path, target_size=self.target_size)
+        img = self._load_image(image_path, target_size=self.target_size)
         if image_preprocessor:
-            image_data = image_preprocessor(image_data)
-        image_data = np.expand_dims(image.img_to_array(image_data), axis=0)
+            img = image_preprocessor(img)
+        image_data = np.expand_dims(np.asarray(img, dtype=np.float32), axis=0)
         return self.make_prediction(image_data, input_tensor_name, timeout=timeout)
 
     def execute(self, request, timeout=10.0):
@@ -43,3 +43,13 @@ class TensorflowServingClient(object):
             results[key] = nd_array.tolist()
 
         return results
+
+    def _load_image(self, path, target_size=None):
+        img = Image.open(path)
+        if img.mode != 'RGB':
+            img = img.convert('RGB')
+        if target_size:
+            height_width = (target_size[1], target_size[0])
+            if img.size != height_width:
+                img = img.resize(height_width)
+        return img

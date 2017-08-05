@@ -30,7 +30,6 @@ setup(
         'grpcio-tools',
         'tensorflow',
         'Pillow',
-        'keras',
     ],
     cmdclass={
         'install': BuildPackageProtos,
