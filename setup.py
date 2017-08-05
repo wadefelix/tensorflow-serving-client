@@ -14,7 +14,6 @@ setup(
     version='0.0.1',
     description='Python client for tensorflow serving',
     author='Triage Technologies Inc.',
-    license='MIT',
     packages=[
         'tensorflow_serving_client',
         'tensorflow_serving_client.protos',

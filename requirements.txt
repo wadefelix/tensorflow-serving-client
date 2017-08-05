@@ -5,3 +5,4 @@ pytest-cov
 flake8
 autoflake
 pep8
+eradicate
