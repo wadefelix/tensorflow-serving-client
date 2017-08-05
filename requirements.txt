@@ -1,4 +1,7 @@
-cython
-grpcio
-grpcio-tools
-tensorflow
+.
+
+pytest
+pytest-cov
+flake8
+autoflake
+pep8

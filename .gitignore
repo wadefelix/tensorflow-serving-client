@@ -1,4 +1,6 @@
 venv
+.venv
+.cache
 build
 dist
 *_pb2.py

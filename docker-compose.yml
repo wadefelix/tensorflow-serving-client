@@ -1,0 +1,10 @@
+version: '3'
+services:
+  serving:
+    image: snormore/tensorflow-serving-http
+    ports:
+      - "9001:9000"
+    environment:
+      MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/mobilenet_v1.tar.gz
+      MODEL_NAME: mobilenet_v1
+      MODEL_VERSION: 1
