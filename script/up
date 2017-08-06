@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -e
+. script/env
+
+set -x
+pip install --upgrade pip
+pip install grpcio grpcio-tools
+python setup.py install
+pip install -r requirements.txt
+
+[ -n "$CIRCLECI" ] || docker-compose up -d
