@@ -4,11 +4,30 @@ jobs:
     working_directory: ~/tensorflow-serving-client
     docker:
       - image: circleci/python:3.6.1
-      - image: snormore/tensorflow-serving-http
+      - image: triage/tensorflow-serving-http:1
         environment:
           MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/mobilenet_v1.tar.gz
-          MODEL_NAME: mobilenet_v1
-          MODEL_VERSION: 1
+          PORT: 9001
+      - image: triage/tensorflow-serving-http:1
+        environment:
+          MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/inception_v3.tar.gz
+          PORT: 9002
+      - image: triage/tensorflow-serving-http:1
+        environment:
+          MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/xception.tar.gz
+          PORT: 9003
+      - image: triage/tensorflow-serving-http:1
+        environment:
+          MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/resnet50.tar.gz
+          PORT: 9004
+      - image: triage/tensorflow-serving-http:1
+        environment:
+          MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/vgg16.tar.gz
+          PORT: 9005
+      - image: triage/tensorflow-serving-http:1
+        environment:
+          MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/vgg19.tar.gz
+          PORT: 9006
     steps:
       - checkout
       - restore_cache:

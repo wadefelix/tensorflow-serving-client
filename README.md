@@ -21,5 +21,5 @@ script/test
 
 Query the running tensorflow-serving Docker container instance with:
 ```
-tensorflow_serving_client --host localhost --port 9001 --image tests/fixtures/files/cat.jpg --model mobilenet_v1-1 --size 224x224
+tensorflow_serving_client --host localhost --port 9000 --image tests/fixtures/files/cat.jpg --size 224x224
 ```
