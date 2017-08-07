@@ -24,15 +24,15 @@ services:
       - "9004:9000"
     environment:
       MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/resnet50.tar.gz
-  # vgg16:
-  #   image: triage/tensorflow-serving-http:1
-  #   ports:
-  #     - "9005:9000"
-  #   environment:
-  #     MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/vgg16.tar.gz
-  # vgg19:
-  #   image: triage/tensorflow-serving-http:1
-  #   ports:
-  #     - "9006:9000"
-  #   environment:
-  #     MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/vgg19.tar.gz
+  vgg16:
+    image: triage/tensorflow-serving-http:1
+    ports:
+      - "9005:9000"
+    environment:
+      MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/vgg16.tar.gz
+  vgg19:
+    image: triage/tensorflow-serving-http:1
+    ports:
+      - "9006:9000"
+    environment:
+      MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/vgg19.tar.gz
