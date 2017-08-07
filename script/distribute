@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+. script/env
+set -xe
+
+pip install --upgrade pip
+pip install grpcio grpcio-tools
+
+python setup.py install
+rm -rf dist
+python setup.py sdist
+python setup.py bdist_wheel --universal
+
+pip install --upgrade twine
+twine upload dist/*
