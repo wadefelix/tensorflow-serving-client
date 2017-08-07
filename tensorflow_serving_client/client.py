@@ -16,9 +16,9 @@ class TensorflowServingClient(object):
     def execute(self, request, timeout=10.0):
         return self.stub.Predict(request, timeout)
 
-    def make_prediction(self, input_data, input_tensor_name, timeout=10.0, model_name='model'):
+    def make_prediction(self, input_data, input_tensor_name, timeout=10.0, model_name=None):
         request = predict_pb2.PredictRequest()
-        request.model_spec.name = model_name
+        request.model_spec.name = model_name or 'model'
 
         copy_message(tf.contrib.util.make_tensor_proto(input_data), request.inputs[input_tensor_name])
         response = self.execute(request, timeout=timeout)
