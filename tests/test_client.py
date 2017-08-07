@@ -1,5 +1,11 @@
+import pytest
+import os
+
 from tensorflow_serving_client import TensorflowServingClient
 from tensorflow_serving_client.utils import load_image, MODEL_SPECS
+
+
+RUN_VGG_TESTS = os.environ.get('RUN_VGG_TESTS', False)
 
 
 MODEL_SERVING_PORTS = {
@@ -77,6 +83,7 @@ def test_resnet50(imagenet_dictionary):
     ], imagenet_dictionary)
 
 
+@pytest.mark.skipif(not RUN_VGG_TESTS, reason='these 500M models are too much for CI')
 def test_vgg16(imagenet_dictionary):
     response = query_model('vgg16')
     assert_predictions(response, [
@@ -88,6 +95,7 @@ def test_vgg16(imagenet_dictionary):
     ], imagenet_dictionary)
 
 
+@pytest.mark.skipif(not RUN_VGG_TESTS, reason='these 500M models are too much for CI')
 def test_vgg19(imagenet_dictionary):
     response = query_model('vgg19')
     assert_predictions(response, [

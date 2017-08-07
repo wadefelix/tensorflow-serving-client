@@ -20,14 +20,14 @@ jobs:
         environment:
           MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/resnet50.tar.gz
           PORT: 9004
-      - image: triage/tensorflow-serving-http:1
-        environment:
-          MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/vgg16.tar.gz
-          PORT: 9005
-      - image: triage/tensorflow-serving-http:1
-        environment:
-          MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/vgg19.tar.gz
-          PORT: 9006
+      # - image: triage/tensorflow-serving-http:1
+      #   environment:
+      #     MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/vgg16.tar.gz
+      #     PORT: 9005
+      # - image: triage/tensorflow-serving-http:1
+      #   environment:
+      #     MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/vgg19.tar.gz
+      #     PORT: 9006
     steps:
       - checkout
       - restore_cache:
