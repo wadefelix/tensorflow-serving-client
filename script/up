@@ -8,4 +8,4 @@ pip install grpcio grpcio-tools
 python setup.py install
 pip install -r requirements.txt
 
-[ -n "$CIRCLECI" ] || docker-compose up -d
+docker-compose up -d
