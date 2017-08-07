@@ -3,25 +3,24 @@ import argparse
 import json
 
 from tensorflow_serving_client import TensorflowServingClient
-from tensorflow_serving_client.utils import load_image
+from tensorflow_serving_client.utils import load_image, MODEL_SPECS
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--host', required=True, type=str, help='Hostname to query')
     parser.add_argument('--port', required=True, type=int, help='Port to query')
-    parser.add_argument('--model', default=None, type=str, help='Name of the model spec to query')
+    parser.add_argument('--model_spec', default=None, type=str, help='Name of the model spec')
+    parser.add_argument('--model_name', required=True, type=str, help='Name of the model to query')
     parser.add_argument('--image', required=True, type=str, help='Image to send (JPG format)')
-    parser.add_argument('--size', required=True, type=str, help='Resize the image to this target size')
     args = parser.parse_args()
 
-    target_size = [int(i) for i in args.size.split('x')]
+    model_spec = MODEL_SPECS[args.model_spec]
 
     client = TensorflowServingClient(args.host, args.port)
-    # TODO (snormore): note that this utils.load_image performs 
-    # the Inception style input preprocessing, this is not consistent 
-    # across other models.
-    image_data = load_image(args.image, target_size)
+    image_data = load_image(args.image,
+                            model_spec['target_size'],
+                            model_spec['preprocess_input'])
     response = client.make_prediction(image_data, 'image')
     predictions = response['class_probabilities'][0].tolist()
 

@@ -1,8 +1,38 @@
 version: '3'
 services:
-  serving:
+  mobilenet_v1:
     image: snormore/tensorflow-serving-http:1
     ports:
-      - "9000:9000"
+      - "9001:9000"
     environment:
       MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/mobilenet_v1.tar.gz
+  inception_v3:
+    image: snormore/tensorflow-serving-http:1
+    ports:
+      - "9002:9000"
+    environment:
+      MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/inception_v3.tar.gz
+  xception:
+    image: snormore/tensorflow-serving-http:1
+    ports:
+      - "9003:9000"
+    environment:
+      MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/xception.tar.gz
+  resnet50:
+    image: snormore/tensorflow-serving-http:1
+    ports:
+      - "9004:9000"
+    environment:
+      MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/resnet50.tar.gz
+  vgg16:
+    image: snormore/tensorflow-serving-http:1
+    ports:
+      - "9005:9000"
+    environment:
+      MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/vgg16.tar.gz
+  vgg19:
+    image: snormore/tensorflow-serving-http:1
+    ports:
+      - "9006:9000"
+    environment:
+      MODEL_URL: https://storage.googleapis.com/tf-serving-docker-http-eae9e0c7-661d-4cca-836a-0433a8da44ba/imagenet/vgg19.tar.gz
