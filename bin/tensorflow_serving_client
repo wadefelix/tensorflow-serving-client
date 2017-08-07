@@ -18,6 +18,9 @@ if __name__ == '__main__':
     target_size = [int(i) for i in args.size.split('x')]
 
     client = TensorflowServingClient(args.host, args.port)
+    # TODO (snormore): note that this utils.load_image performs 
+    # the Inception style input preprocessing, this is not consistent 
+    # across other models.
     image_data = load_image(args.image, target_size)
     response = client.make_prediction(image_data, 'image')
     predictions = response['class_probabilities'][0].tolist()
