@@ -10,8 +10,7 @@ if __name__ == '__main__':
 
     parser.add_argument('--host', required=True, type=str, help='Hostname to query')
     parser.add_argument('--port', required=True, type=int, help='Port to query')
-    parser.add_argument('--model_spec', default=None, type=str, help='Name of the model spec')
-    parser.add_argument('--model_name', required=True, type=str, help='Name of the model to query')
+    parser.add_argument('--model_spec', required=True, type=str, help='Name of the model spec')
     parser.add_argument('--image', required=True, type=str, help='Image to send (JPG format)')
     args = parser.parse_args()
 
