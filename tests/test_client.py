@@ -36,7 +36,8 @@ def assert_predictions(response, expected_top_5, imagenet_dictionary):
     expected_classes = [name for name, _ in expected_top_5]
     assert classes == expected_classes
     scores = [score for _, score in predictions]
-    assert_array_almost_equal_nulp(np.array(scores), np.array(expected_top_5))
+    expected_scores = [score for _, score in expected_top_5]
+    np.testing.assert_array_almost_equal_nulp(np.array(scores), np.array(expected_scores))
 
 
 def test_mobilenet_v1(imagenet_dictionary):
