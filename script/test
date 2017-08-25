@@ -4,15 +4,16 @@ ARGS="${@:-tests/}"
 set -e
 
 # Wait until the tensorflow-serving connection is up.
-for port in $(seq 9001 9006); do
-  n=0
-  until [ $n -ge 30 ]
-  do
-    if [[ $(nc localhost $port -w 5 | wc -c) -ne 0 ]]; then break; fi
-    n=$[$n+1]
-    sleep 2
-  done
-done
+# for port in $(seq 9001 9006); do
+#   n=0
+#   until [ $n -ge 30 ]
+#   do
+#     if [[ $(nc localhost $port -w 1 | wc -c) -ne 0 ]]; then break; fi
+#     n=$[$n+1]
+#     echo "Waiting for tensorflow-serving on $port..."
+#     sleep 5
+#   done
+# done
 
 # Run tests and linting checks.
 PYTHONPATH="." pytest $ARGS

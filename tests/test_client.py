@@ -1,3 +1,5 @@
+import numpy as np
+
 from tensorflow_serving_client import TensorflowServingClient
 from tensorflow_serving_client.utils import load_image, MODEL_SPECS
 
@@ -30,7 +32,11 @@ def assert_predictions(response, expected_top_5, imagenet_dictionary):
     predictions = sorted(predictions, reverse=True, key=lambda kv: kv[1])[:5]
     predictions = [(label, float(score)) for label, score in predictions]
     print(predictions)
-    assert predictions == expected_top_5
+    classes = [name for name, _ in predictions]
+    expected_classes = [name for name, _ in expected_top_5]
+    assert classes == expected_classes
+    scores = [score for _, score in predictions]
+    assert_array_almost_equal_nulp(np.array(scores), np.array(expected_top_5))
 
 
 def test_mobilenet_v1(imagenet_dictionary):
