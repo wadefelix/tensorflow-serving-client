@@ -1,6 +1,6 @@
 Python client for communicating with [tensorflow-serving](https://github.com/tensorflow/serving).
 
-[![Build Status](https://travis-ci.org/triagemd/tensorflow-serving-client.svg?branch=master)](https://travis-ci.org/triagemd/tensorflow-serving-client)
+[![Build Status](https://travis-ci.org/triagemd/tensorflow-serving-client.svg?branch=master)](https://travis-ci.org/triagemd/tensorflow-serving-client) [![PyPI version](https://badge.fury.io/py/tensorflow-serving-client.svg)](https://badge.fury.io/py/tensorflow-serving-client)
 
 ## Getting started
 
