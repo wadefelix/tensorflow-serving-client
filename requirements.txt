@@ -10,3 +10,4 @@ eradicate
 
 requests
 numpy
+tensorflow

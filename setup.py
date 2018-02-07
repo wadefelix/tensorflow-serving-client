@@ -11,7 +11,7 @@ class BuildPackageProtos(install):
 
 setup(
     name='tensorflow_serving_client',
-    version='0.0.8',
+    version='0.0.9',
     description='Python client for tensorflow serving',
     author='Triage Technologies Inc.',
     author_email='ai@triage.com',
@@ -30,7 +30,6 @@ setup(
     install_requires=[
         'grpcio',
         'grpcio-tools',
-        'tensorflow',
         'Pillow',
     ],
     cmdclass={
