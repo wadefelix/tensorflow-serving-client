@@ -10,7 +10,7 @@ MODEL_SERVING_PORTS = {
     'xception': 9003,
     'resnet50': 9004,
     'vgg16': 9005,
-    'vgg19': 9006,
+    'densenet_121': 9006,
 }
 
 
@@ -95,8 +95,8 @@ def test_vgg16(imagenet_dictionary):
     ], imagenet_dictionary)
 
 
-def test_vgg19(imagenet_dictionary):
-    response = query_model('vgg19')
+def test_densenet_121(imagenet_dictionary):
+    response = query_model('densenet_121')
     assert_predictions(response, [
         ('red fox, Vulpes vulpes', 0.3812929391860962),
         ('kit fox, Vulpes macrotis', 0.27262774109840393),
