@@ -20,7 +20,7 @@ class TensorflowServingClient(object):
         request = predict_pb2.PredictRequest()
         request.model_spec.name = model_name or 'model'
 
-        copy_message(tf.contrib.util.make_tensor_proto(input_data), request.inputs[input_tensor_name])
+        copy_message(tf.contrib.util.make_tensor_proto(input_data, dtype='float32'), request.inputs[input_tensor_name])
         response = self.execute(request, timeout=timeout)
 
         results = {}
