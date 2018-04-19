@@ -30,7 +30,7 @@ setup(
     install_requires=[
         'grpcio',
         'grpcio-tools',
-        'Pillow',
+        'keras-model-specs'
     ],
     cmdclass={
         'install': BuildPackageProtos,

@@ -1,7 +1,7 @@
 import numpy as np
 
 from tensorflow_serving_client import TensorflowServingClient
-from tensorflow_serving_client.utils import load_image, MODEL_SPECS
+from keras_model_specs import ModelSpec
 
 
 MODEL_SERVING_PORTS = {
@@ -15,11 +15,9 @@ MODEL_SERVING_PORTS = {
 
 
 def query_model(model_spec_name):
-    model_spec = MODEL_SPECS[model_spec_name]
+    model_spec = ModelSpec.get(model_spec_name)
     client = TensorflowServingClient('localhost', MODEL_SERVING_PORTS[model_spec_name])
-    image = load_image('tests/fixtures/files/cat.jpg',
-                       model_spec['target_size'],
-                       model_spec['preprocess_input'])
+    image = model_spec.load_image('tests/fixtures/files/cat.jpg')
     return client.make_prediction(image, 'image')
 
 
