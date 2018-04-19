@@ -74,31 +74,31 @@ def test_xception(imagenet_dictionary):
 def test_resnet50(imagenet_dictionary):
     response = query_model('resnet50')
     assert_predictions(response, [
-        ('red fox, Vulpes vulpes', 0.3193315863609314),
-        ('kit fox, Vulpes macrotis', 0.19359852373600006),
-        ('weasel', 0.14291106164455414),
-        ('Pembroke, Pembroke Welsh corgi', 0.1395975947380066),
-        ('lynx, catamount', 0.04618712514638901)
+        ('nematode, nematode worm, roundworm', 0.10943806171417236),
+        ('dishwasher, dish washer, dishwashing machine', 0.05135996267199516),
+        ('cleaver, meat cleaver, chopper', 0.030238119885325432),
+        ('oboe, hautboy, hautbois', 0.020914554595947266),
+        ('nail', 0.018017278984189034)
     ], imagenet_dictionary)
 
 
 def test_vgg16(imagenet_dictionary):
     response = query_model('vgg16')
     assert_predictions(response, [
-        ('kit fox, Vulpes macrotis', 0.3090206980705261),
-        ('red fox, Vulpes vulpes', 0.21598483622074127),
-        ('Egyptian cat', 0.1327403038740158),
-        ('tiger cat', 0.11005250364542007),
-        ('tabby, tabby cat', 0.08285804092884064)
+        ('Arctic fox, white fox, Alopex lagopus', 0.05446813628077507),
+        ('Samoyed, Samoyede', 0.02633393369615078),
+        ('wood rabbit, cottontail, cottontail rabbit', 0.024355394765734673),
+        ('mosquito net', 0.022568685933947563),
+        ('Siamese cat, Siamese', 0.021786609664559364)
     ], imagenet_dictionary)
 
 
 def test_densenet_121(imagenet_dictionary):
     response = query_model('densenet_121')
     assert_predictions(response, [
-        ('red fox, Vulpes vulpes', 0.3812929391860962),
-        ('kit fox, Vulpes macrotis', 0.27262774109840393),
-        ('tiger cat', 0.08553500473499298),
-        ('lynx, catamount', 0.05379556491971016),
-        ('Egyptian cat', 0.047869954258203506)
+        ('kit fox, Vulpes macrotis', 0.48924919962882996),
+        ('Egyptian cat', 0.18644067645072937),
+        ('tiger cat', 0.10112985968589783),
+        ('tabby, tabby cat', 0.06967031955718994),
+        ('lynx, catamount', 0.055680468678474426)
     ], imagenet_dictionary)
