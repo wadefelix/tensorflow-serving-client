@@ -4,7 +4,7 @@ ARGS="${@:-tests/}"
 set -e
 
 # Wait until the tensorflow-serving connection is up.
-for port in $(seq 9001 9006); do
+for port in $(seq 9001 9003); do
   n=0
   until [ $n -ge 30 ]
   do

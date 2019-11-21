@@ -1,4 +1,8 @@
-.
+-e .
+
+requests
+numpy
+tensorflow==1.*
 
 pytest
 pytest-cov
@@ -7,10 +11,3 @@ autoflake
 pep8
 autopep8
 eradicate
-
-requests
-numpy
-tensorflow
-grpcio
-grpcio-tools
-keras-model-specs

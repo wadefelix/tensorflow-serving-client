@@ -7,10 +7,7 @@ from keras_model_specs import ModelSpec
 MODEL_SERVING_PORTS = {
     'mobilenet_v1': 9001,
     'inception_v3': 9002,
-    'xception': 9003,
-    'resnet50': 9004,
-    'vgg16': 9005,
-    'densenet_121': 9006,
+    'xception': 9003
 }
 
 
@@ -68,37 +65,4 @@ def test_xception(imagenet_dictionary):
         ('Pembroke, Pembroke Welsh corgi', 0.07581676542758942),
         ('tiger cat', 0.0746716633439064),
         ('kit fox, Vulpes macrotis', 0.06751589477062225)
-    ], imagenet_dictionary)
-
-
-def test_resnet50(imagenet_dictionary):
-    response = query_model('resnet50')
-    assert_predictions(response, [
-        ('nematode, nematode worm, roundworm', 0.10943806171417236),
-        ('dishwasher, dish washer, dishwashing machine', 0.05135996267199516),
-        ('cleaver, meat cleaver, chopper', 0.030238119885325432),
-        ('oboe, hautboy, hautbois', 0.020914554595947266),
-        ('nail', 0.018017278984189034)
-    ], imagenet_dictionary)
-
-
-def test_vgg16(imagenet_dictionary):
-    response = query_model('vgg16')
-    assert_predictions(response, [
-        ('Arctic fox, white fox, Alopex lagopus', 0.05446813628077507),
-        ('Samoyed, Samoyede', 0.02633393369615078),
-        ('wood rabbit, cottontail, cottontail rabbit', 0.024355394765734673),
-        ('mosquito net', 0.022568685933947563),
-        ('Siamese cat, Siamese', 0.021786609664559364)
-    ], imagenet_dictionary)
-
-
-def test_densenet_121(imagenet_dictionary):
-    response = query_model('densenet_121')
-    assert_predictions(response, [
-        ('kit fox, Vulpes macrotis', 0.48924919962882996),
-        ('Egyptian cat', 0.18644067645072937),
-        ('tiger cat', 0.10112985968589783),
-        ('tabby, tabby cat', 0.06967031955718994),
-        ('lynx, catamount', 0.055680468678474426)
     ], imagenet_dictionary)

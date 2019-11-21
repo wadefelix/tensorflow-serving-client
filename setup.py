@@ -1,17 +1,23 @@
-from setuptools import setup
-from setuptools.command.install import install
+import setuptools
 
 
-class BuildPackageProtos(install):
-    def run(self):
-        install.run(self)
-        from grpc.tools import command
-        command.build_package_protos('')
+class BuildPackageProtos(setuptools.Command):
+  description = 'build grpc protobuf modules'
+  user_options = []
+
+  def initialize_options(self):
+    pass
+  def finalize_options(self):
+    pass
+
+  def run(self):
+    from grpc_tools.command import build_package_protos
+    build_package_protos('.')
 
 
-setup(
+setuptools.setup(
     name='tensorflow_serving_client',
-    version='0.0.10',
+    version='1.0.0',
     description='Python client for tensorflow serving',
     author='Triage Technologies Inc.',
     author_email='ai@triage.com',
@@ -26,14 +32,13 @@ setup(
     ],
     setup_requires=[
         'cython',
+        'grpcio-tools'
     ],
     install_requires=[
         'grpcio',
-        'grpcio-tools',
-        'keras-model-specs'
+        'keras-model-specs == 1.*'
     ],
     cmdclass={
-        'install': BuildPackageProtos,
-        'develop': BuildPackageProtos,
+        'build_protos': BuildPackageProtos
     },
 )
