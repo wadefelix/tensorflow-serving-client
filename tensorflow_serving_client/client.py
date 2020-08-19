@@ -7,10 +7,17 @@ from tensorflow_serving_client.proto_util import copy_message
 
 class TensorflowServingClient(object):
 
-    def __init__(self, host, port):
+    def __init__(self, host, port, cert=None):
         self.host = host
         self.port = port
         self.channel = grpc.insecure_channel('%s:%s' % (host, port))
+        if cert is None:
+            self.channel = grpc.insecure_channel('%s:%s' % (host, port))
+        else:
+            with open(cert,'rb') as f:
+                trusted_certs = f.read()
+            credentials = grpc.ssl_channel_credentials(root_certificates=trusted_certs)
+            self.channel = grpc.secure_channel('%s:%s' % (host, port), credentials, options=None)
         self.stub = prediction_service_pb2_grpc.PredictionServiceStub(self.channel)
 
     def execute(self, request, timeout=10.0):
